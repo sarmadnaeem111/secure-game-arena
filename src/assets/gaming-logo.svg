@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="60" viewBox="0 0 200 60">
+  <!-- Background Shape with Gradient -->
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00c6ff" />
+      <stop offset="100%" stop-color="#0072ff" />
+    </linearGradient>
+    
+    <!-- Glow Effect -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Main Background Shape -->
+  <path d="M10,5 H190 L195,10 L195,50 L190,55 H10 L5,50 L5,10 Z" fill="rgba(0,0,0,0.8)" stroke="url(#logoGradient)" stroke-width="2" />
+  
+  <!-- PUBG Text -->
+  <text x="20" y="38" font-family="'Orbitron', sans-serif" font-weight="700" font-size="24" fill="#ffffff" filter="url(#glow)">PUBG</text>
+  
+  <!-- Tournaments Text -->
+  <text x="95" y="38" font-family="'Exo 2', sans-serif" font-weight="400" font-size="20" fill="#00c6ff">Tournaments</text>
+  
+  <!-- Controller Icon -->
+  <g transform="translate(170, 30) scale(0.15)" fill="#00c6ff">
+    <path d="M60,0 C26.9,0 0,26.9 0,60 C0,93.1 26.9,120 60,120 C93.1,120 120,93.1 120,60 C120,26.9 93.1,0 60,0 Z M40,80 L40,90 L30,90 L30,80 L20,80 L20,70 L30,70 L30,60 L40,60 L40,70 L50,70 L50,80 L40,80 Z M80,90 C75,90 70,85 70,80 C70,75 75,70 80,70 C85,70 90,75 90,80 C90,85 85,90 80,90 Z M100,70 C95,70 90,65 90,60 C90,55 95,50 100,50 C105,50 110,55 110,60 C110,65 105,70 100,70 Z" />
+  </g>
+  
+  <!-- Decorative Elements -->
+  <g stroke="#00c6ff" stroke-width="1" opacity="0.5">
+    <!-- Top Left Corner -->
+    <line x1="5" y1="10" x2="15" y2="10" />
+    <line x1="10" y1="5" x2="10" y2="15" />
+    
+    <!-- Top Right Corner -->
+    <line x1="185" y1="10" x2="195" y2="10" />
+    <line x1="190" y1="5" x2="190" y2="15" />
+    
+    <!-- Bottom Left Corner -->
+    <line x1="5" y1="50" x2="15" y2="50" />
+    <line x1="10" y1="45" x2="10" y2="55" />
+    
+    <!-- Bottom Right Corner -->
+    <line x1="185" y1="50" x2="195" y2="50" />
+    <line x1="190" y1="45" x2="190" y2="55" />
+  </g>
+</svg>

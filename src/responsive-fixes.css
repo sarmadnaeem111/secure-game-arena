@@ -1,0 +1,360 @@
+/* Mobile Responsiveness Fixes */
+
+/* Prevent horizontal scrolling on all devices */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  max-width: 100vw;
+}
+
+/* Game Logo Image Styling */
+.game-logo-img {
+  max-height: 80px;
+  max-width: 100%;
+  object-fit: contain;
+  margin: 0 auto 15px;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.game-logo-img:hover {
+  transform: scale(1.05);
+}
+
+/* Critical viewport meta tag fix */
+@viewport {
+  width: device-width;
+  initial-scale: 1;
+}
+
+/* Enhanced responsive fixes */
+@media (max-width: 992px) {
+  /* Tablet fixes */
+  .gaming-hero {
+    padding: 4rem 0 !important;
+  }
+  
+  .gaming-title {
+    font-size: 2.5rem !important;
+  }
+  
+  .hero-image-container {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Mobile fixes */
+  .container, .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 100%;
+  }
+  
+  /* Typography adjustments */
+  .gaming-title {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .gaming-subtitle {
+    font-size: 1rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  .gaming-section-title {
+    font-size: 1.75rem !important;
+    margin-top: 2rem;
+  }
+  
+  /* Hero section fixes */
+  .gaming-hero {
+    padding: 3rem 0 2rem !important;
+    min-height: auto;
+  }
+  
+  .gaming-hero .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .gaming-hero [class*="col-"] {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  /* Button fixes */
+  .gaming-btn {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .d-flex.flex-column.flex-md-row.gap-2.gap-md-3 {
+    gap: 1rem !important;
+  }
+  
+  /* Tournament cards */
+  .gaming-card, .tournament-card {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  /* Navbar fixes */
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+  
+  .navbar-brand {
+    font-size: 1.25rem;
+    max-width: 70%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .navbar-collapse {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    padding: 1rem;
+    border-radius: 0 0 10px 10px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .navbar-nav .nav-link {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .navbar-nav .nav-link:last-child {
+    border-bottom: none;
+  }
+  
+  /* Tournament header */
+  .tournaments-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .tournaments-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .wallet-balance {
+    font-size: 1rem;
+  }
+  
+  /* Carousel fixes */
+  .carousel-card-container {
+    padding: 10px;
+    max-width: 100%;
+  }
+  
+  .carousel-item .gaming-card {
+    margin: 0 auto;
+    max-width: 100%;
+  }
+  
+  /* How It Works section */
+  .gaming-step-card {
+    margin-bottom: 15px;
+    padding: 1.5rem;
+  }
+  
+  /* Grid fixes */
+  .row {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  
+  .row > [class*="col-"] {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+  }
+  
+  /* Form fixes */
+  .form-control, .form-select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  /* Table fixes */
+  .table-responsive {
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+  
+  /* Card fixes */
+  .card-body {
+    padding: 1.25rem;
+  }
+  
+  /* Footer fixes */
+  footer .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Extra small devices */
+  .gaming-title {
+    font-size: 1.75rem !important;
+  }
+  
+  .gaming-section-title {
+    font-size: 1.5rem !important;
+  }
+  
+  .gaming-subtitle {
+    font-size: 0.9rem !important;
+  }
+  
+  .tournaments-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .hero-image-container {
+    margin-top: 1.5rem;
+  }
+  
+  .hero-image-container img {
+    max-height: 180px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .navbar-brand {
+    font-size: 1.1rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .whatsapp-announcement {
+    font-size: 0.85rem;
+    word-break: break-word;
+  }
+  
+  .whatsapp-announcement a {
+    word-break: break-all;
+  }
+  
+  /* Carousel controls */
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 15%;
+  }
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
+  /* Ensure all content fits */
+  img, video, iframe, table, div {
+    max-width: 100% !important;
+    height: auto;
+  }
+  
+  .position-absolute {
+    max-width: 100vw;
+  }
+  
+  /* Modal fixes */
+  .modal-dialog {
+    margin: 0.5rem;
+  }
+  
+  /* Badge fixes */
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ultra small devices */
+  .gaming-title {
+    font-size: 1.5rem !important;
+  }
+  
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .gaming-hero {
+    padding: 2rem 0 !important;
+  }
+  
+  .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Fix any potential overflow issues */
+.container, .container-fluid, .row {
+  max-width: 100%;
+}
+
+/* Ensure proper word wrapping */
+.card-text, .card-title, .nav-link, .btn {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Fix for iOS Safari issues */
+input, textarea, select {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 4px;
+}
+
+select {
+  -webkit-appearance: menulist-button;
+  appearance: menulist-button;
+}
+
+/* Fix for fixed/sticky elements */
+.sticky-top {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+}
+
+/* Ensure proper scaling */
+* {
+  box-sizing: border-box;
+}
+
+/* Fix for flexbox issues */
+.d-flex {
+  min-width: 0;
+}
+
+/* Ensure images don't overflow */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

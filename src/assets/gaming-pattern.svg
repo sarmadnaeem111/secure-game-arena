@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <!-- Grid Pattern -->
+  <rect width="100" height="100" fill="none" stroke="rgba(0,198,255,0.15)" stroke-width="1"/>
+  
+  <!-- Controller Button Icons -->
+  <g opacity="0.2">
+    <!-- Triangle Button -->
+    <polygon points="20,20 25,15 30,20 25,25" fill="#00c6ff" />
+    
+    <!-- Square Button -->
+    <rect x="70" y="15" width="10" height="10" fill="#00c6ff" />
+    
+    <!-- Circle Button -->
+    <circle cx="25" cy="75" r="5" fill="#00c6ff" />
+    
+    <!-- X Button -->
+    <g stroke="#00c6ff" stroke-width="2">
+      <line x1="70" y1="70" x2="80" y2="80" />
+      <line x1="80" y1="70" x2="70" y2="80" />
+    </g>
+    
+    <!-- D-Pad -->
+    <g fill="#00c6ff">
+      <rect x="47" y="40" width="6" height="20" />
+      <rect x="40" y="47" width="20" height="6" />
+    </g>
+  </g>
+</svg>

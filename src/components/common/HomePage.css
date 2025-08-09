@@ -1,0 +1,443 @@
+/* Gaming-themed Homepage Styles */
+
+/* Custom Gaming Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700;800&display=swap');
+
+/* Hero Section Gaming Style */
+.gaming-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), var(--hero-background);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 0;
+  border-bottom: 4px solid #00c6ff;
+}
+
+.gaming-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/hero-gaming-overlay.svg');
+  background-size: cover;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.gaming-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00c6ff, transparent);
+  z-index: 2;
+}
+
+.gaming-hero .container {
+  position: relative;
+  z-index: 3;
+}
+
+/* Gaming Typography */
+.gaming-title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 198, 255, 0.7), 0 0 20px rgba(0, 198, 255, 0.5);
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.gaming-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #00c6ff, transparent);
+}
+
+.gaming-subtitle {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 400;
+  color: #e0e0e0;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+}
+
+/* Gaming Buttons */
+.gaming-btn {
+  font-family: 'Exo 2', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border: none;
+  position: relative;
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+  color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0, 198, 255, 0.4);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.gaming-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #0072ff, #00c6ff);
+  transition: all 0.4s ease;
+  z-index: -1;
+}
+
+.gaming-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(0, 198, 255, 0.5);
+}
+
+.gaming-btn:hover::before {
+  left: 0;
+}
+
+.gaming-btn-outline {
+  background: transparent;
+  border: 2px solid #00c6ff;
+  color: #00c6ff;
+  box-shadow: 0 4px 15px rgba(0, 198, 255, 0.2);
+}
+
+.gaming-btn-outline:hover {
+  color: white;
+  border-color: #0072ff;
+}
+
+/* Featured Tournaments Section */
+.gaming-section-title {
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 2.5rem;
+  position: relative;
+  padding-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.gaming-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+}
+
+/* Tournament Cards */
+.gaming-card {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 198, 255, 0.2);
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.gaming-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  z-index: 1;
+}
+
+.gaming-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.gaming-card .card-header {
+  background: #f8f9fa;
+  border-bottom: 1px solid rgba(0, 198, 255, 0.2);
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 600;
+  color: #333;
+}
+
+.gaming-card .card-body {
+  padding: 1.5rem;
+}
+
+.gaming-card .card-title {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 700;
+  color: #0072ff;
+  margin-bottom: 1rem;
+}
+
+.gaming-card .card-text {
+  color: #555;
+  font-family: 'Exo 2', sans-serif;
+}
+
+/* How It Works section responsive styles */
+.gaming-step-card {
+  margin-bottom: 20px;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .gaming-step-card {
+    height: auto;
+  }
+}
+
+.gaming-card .card-footer {
+  background: #f8f9fa;
+  border-top: 1px solid rgba(0, 198, 255, 0.2);
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.gaming-card .card-footer.live {
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+  color: white;
+  animation: pulse-gaming 1.5s infinite;
+}
+
+@keyframes pulse-gaming {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* How It Works Section */
+.gaming-step-card {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: none;
+  position: relative;
+  height: 100%;
+}
+
+.gaming-step-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.gaming-step-number {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  box-shadow: 0 5px 15px rgba(0, 198, 255, 0.3);
+}
+
+.gaming-step-card .card-title {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.gaming-step-card .card-text {
+  color: #555;
+  font-family: 'Exo 2', sans-serif;
+  text-align: center;
+}
+
+/* Call to Action Section */
+.gaming-cta {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../../assets/hero-background-optimized.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 4rem 0;
+  position: relative;
+  border-top: 4px solid #00c6ff;
+  border-bottom: 4px solid #00c6ff;
+  margin-top: 3rem;
+}
+
+.gaming-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/hero-gaming-overlay.svg');
+  background-size: cover;
+  opacity: 0.2;
+}
+
+.gaming-cta-title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 198, 255, 0.7);
+}
+
+/* Additional mobile-specific styles for homepage */
+@media (max-width: 768px) {
+  .gaming-hero {
+    background-attachment: scroll;
+    background-position: center center;
+  }
+  
+  .gaming-title {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+  }
+  
+  .gaming-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-image-container {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  .hero-image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .gaming-section-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  
+  .gaming-step-card {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+  
+  .gaming-step-number {
+    margin-bottom: 1rem;
+  }
+  
+  .gaming-step-number span {
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+  }
+}
+
+@media (max-width: 576px) {
+  .gaming-hero {
+    padding: 2.5rem 0;
+  }
+  
+  .gaming-title {
+    font-size: 1.8rem;
+    letter-spacing: 0.5px;
+  }
+  
+  .gaming-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .gaming-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero-image-container img {
+    max-height: 200px;
+    border-radius: 6px;
+  }
+  
+  .gaming-section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .gaming-step-card {
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+  
+  .carousel-card-container {
+    padding: 0.5rem;
+  }
+  
+  .gaming-card {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gaming-hero {
+    padding: 2rem 0;
+  }
+  
+  .gaming-title {
+    font-size: 1.5rem;
+    letter-spacing: 0;
+  }
+  
+  .gaming-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .gaming-btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  
+  .gaming-section-title {
+    font-size: 1.3rem;
+  }
+}
