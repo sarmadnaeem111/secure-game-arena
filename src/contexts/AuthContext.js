@@ -153,7 +153,35 @@ export function AuthProvider({ children }) {
         'prompt': 'select_account'
       });
       
+      // Fix for Cross-Origin-Opener-Policy error in popup.ts
+      // This approach directly addresses the window.closed issue
+      const originalWindowOpen = window.open;
+      window.open = function(...args) {
+        const popup = originalWindowOpen.apply(this, args);
+        // Create a proxy for the popup to avoid Cross-Origin-Opener-Policy issues
+        if (popup) {
+          const originalClosed = Object.getOwnPropertyDescriptor(Window.prototype, 'closed');
+          if (originalClosed) {
+            Object.defineProperty(popup, 'closed', {
+              get: function() {
+                try {
+                  return originalClosed.get.call(this);
+                } catch (e) {
+                  // If we get a Cross-Origin error, assume window is not closed
+                  return false;
+                }
+              }
+            });
+          }
+        }
+        return popup;
+      };
+      
+      // Use signInWithPopup with the patched window.open
       const result = await signInWithPopup(auth, provider);
+      
+      // Restore original window.open
+      window.open = originalWindowOpen;
       
       // Check if this is a new user or existing user
       const userRef = doc(db, 'users', result.user.uid);
