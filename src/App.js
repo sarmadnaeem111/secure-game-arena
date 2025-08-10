@@ -31,6 +31,7 @@ import UserProfile from './components/user/UserProfile';
 import TournamentDetails from './components/user/TournamentDetails';
 import WithdrawalHistory from './components/user/WithdrawalHistory';
 import RechargeHistory from './components/user/RechargeHistory';
+import RewardsHistory from './components/user/RewardsHistory';
 
 // Admin Components
 import AdminDashboard from './components/admin/AdminDashboard';
@@ -114,6 +115,14 @@ function App() {
                 element={
                   <PrivateRoute>
                     <RechargeHistory />
+                  </PrivateRoute>
+                } 
+              />
+              <Route 
+                path="/rewards-history" 
+                element={
+                  <PrivateRoute>
+                    <RewardsHistory />
                   </PrivateRoute>
                 } 
               />
