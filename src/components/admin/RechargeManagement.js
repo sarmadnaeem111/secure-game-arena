@@ -97,7 +97,7 @@ function RechargeManagement() {
       }
       
       // Show success message and refresh the list
-      setSuccess('Recharge request approved successfully');
+      setSuccess('Recharge request approved successfully. User wallet balance updated.');
       fetchRechargeRequests();
       setShowModal(false);
       
