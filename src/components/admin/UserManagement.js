@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Table, Button, Modal, Form, Alert, InputGroup } from 'react-bootstrap';
-import { collection, getDocs, doc, updateDoc, getDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, getDoc, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import { sanitizeInput } from '../../utils/security';
 
@@ -14,6 +14,8 @@ function UserManagement() {
   const [walletAmount, setWalletAmount] = useState(0);
   const [currentBalance, setCurrentBalance] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
+  const [gameName, setGameName] = useState('');
+  const [position, setPosition] = useState('');
 
   // Fetch users on component mount
   useEffect(() => {
@@ -84,6 +86,8 @@ function UserManagement() {
         setCurrentUserId(userId);
         setCurrentBalance(userData.walletBalance || 0);
         setWalletAmount(0);
+        setGameName('');
+        setPosition('');
         setShowModal(true);
       } else {
         setError('User not found');
@@ -104,14 +108,40 @@ function UserManagement() {
         const userData = userDoc.data();
         const newBalance = (userData.walletBalance || 0) + Number(walletAmount);
         
+        // Update user's wallet balance
         await updateDoc(userRef, {
           walletBalance: newBalance,
           lastUpdated: new Date().toISOString()
         });
         
-        // Refresh users list
+        // Create description based on game name and position
+        let description = 'Reward added by administrator';
+        if (gameName) {
+          description = `Reward for ${gameName}`;
+          if (position) {
+            description += ` - ${position} position`;
+          }
+        }
+        
+        // Add record to rewards collection for history tracking
+        await addDoc(collection(db, 'rewards'), {
+          userId: currentUserId,
+          userEmail: userData.email,
+          amount: Number(walletAmount),
+          description: description,
+          gameName: gameName || null,
+          position: position || null,
+          addedBy: 'Administrator',
+          timestamp: serverTimestamp(),
+          previousBalance: userData.walletBalance || 0,
+          newBalance: newBalance
+        });
+        
+        // Refresh users list and reset form fields
         fetchUsers();
         setShowModal(false);
+        setGameName('');
+        setPosition('');
       }
     } catch (error) {
       setError('Failed to update wallet: ' + error.message);
@@ -178,7 +208,7 @@ function UserManagement() {
                       size="sm"
                       onClick={() => openWalletModal(user.id)}
                     >
-                      Add Funds
+                      Add Rewards
                     </Button>
                   </td>
                 </tr>
@@ -191,7 +221,7 @@ function UserManagement() {
       {/* Add Funds Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Funds to Wallet</Modal.Title>
+          <Modal.Title>Add Funds to Wallet (Rewards)</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -205,7 +235,30 @@ function UserManagement() {
             </Form.Group>
             
             <Form.Group className="mb-3">
-              <Form.Label>Amount to Add (Rs.)</Form.Label>
+              <Form.Label>Game Name</Form.Label>
+              <Form.Control 
+                type="text" 
+                value={gameName} 
+                onChange={(e) => setGameName(e.target.value)} 
+                placeholder="Enter game name (optional)" 
+              />
+            </Form.Group>
+            
+            <Form.Group className="mb-3">
+              <Form.Label>Position</Form.Label>
+              <Form.Select
+                value={position}
+                onChange={(e) => setPosition(e.target.value)}
+              >
+                <option value="">Select position (optional)</option>
+                <option value="1st">1st Position</option>
+                <option value="2nd">2nd Position</option>
+                <option value="3rd">3rd Position</option>
+              </Form.Select>
+            </Form.Group>
+            
+            <Form.Group className="mb-3">
+              <Form.Label>Reward Amount to Add (Rs.)</Form.Label>
               <Form.Control 
                 type="number" 
                 value={walletAmount} 
@@ -234,7 +287,7 @@ function UserManagement() {
             onClick={handleAddFunds}
             disabled={walletAmount <= 0}
           >
-            Add Funds
+            Add Rewards
           </Button>
         </Modal.Footer>
       </Modal>
