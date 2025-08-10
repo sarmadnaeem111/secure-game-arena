@@ -140,12 +140,28 @@ function UserProfile() {
                   <Button 
                     variant="outline-secondary"
                     size="sm"
-                    className="mb-2"
+                    className="me-2 mb-2"
                     onClick={() => navigate('/withdrawal-history')}
                   >
                     Withdraw History
                   </Button>
+                  <Button 
+                    variant="outline-info"
+                    size="sm"
+                    className="mb-2"
+                    onClick={() => navigate('/rewards-history')}
+                  >
+                    Rewards History
+                  </Button>
                 </div>
+                
+                <hr />
+                
+                <h6 className="fs-6">Rewards</h6>
+                <p className="small">
+                  Any rewards or bonuses added to your account by administrators will be reflected in your wallet balance.
+                  Click on the &quot;Rewards History&quot; button to view all rewards received.
+                </p>
                 
                 <hr />
                 
