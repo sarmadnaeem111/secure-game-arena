@@ -133,18 +133,18 @@ function RechargeModal({ show, onHide, currentUser, onSuccess }) {
     }
   };
 
-  const openCloudinaryWidget = () => {
-    if (!window.cloudinary) {
-      setError('Image upload widget is not available. Please use the file upload option.');
-      return;
-    }
-
+  const openCloudinaryWidget = async () => {
     try {
-      // Initialize Cloudinary
-      initCloudinary();
+      // Initialize Cloudinary - now returns a Promise
+      const cloudinaryInstance = await initCloudinary();
+      
+      if (!cloudinaryInstance) {
+        setError('Image upload widget is not available. Please use the file upload option.');
+        return;
+      }
 
       // Create and open the upload widget
-      const widget = window.cloudinary.createUploadWidget(
+      const widget = cloudinaryInstance.createUploadWidget(
         {
           cloudName: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
           uploadPreset: process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET,
