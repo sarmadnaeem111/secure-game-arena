@@ -147,6 +147,18 @@ function MyTournaments() {
                       <strong>Prize Pool:</strong> Rs. {tournament.prizePool}
                       <br />
                       <strong>Participants:</strong> {tournament.participants?.length || 0} / {tournament.maxParticipants}
+                      {tournament.map && (
+                        <>
+                          <br />
+                          <strong>Map:</strong> {tournament.map}
+                        </>
+                      )}
+                      {tournament.version && (
+                        <>
+                          <br />
+                          <strong>Version:</strong> {tournament.version}
+                        </>
+                      )}
                     </Card.Text>
                     
                     {tournament.status === 'upcoming' && !tournament.matchDetails && (
