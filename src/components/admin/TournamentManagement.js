@@ -161,7 +161,7 @@ function TournamentManagement() {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: name === 'entryFee' || name === 'prizePool' || name === 'maxParticipants' 
+      [name]: name === 'entryFee' || name === 'maxParticipants' 
         ? Number(value) 
         : value
     });
@@ -174,7 +174,7 @@ function TournamentManagement() {
       tournamentDate: '',
       tournamentTime: '',
       entryFee: 0,
-      prizePool: 0,
+      prizePool: '',
       maxParticipants: 100,
       matchDetails: '',
       rules: '',
@@ -201,7 +201,7 @@ function TournamentManagement() {
       tournamentDate,
       tournamentTime,
       entryFee: tournament.entryFee || 0,
-      prizePool: tournament.prizePool || 0,
+      prizePool: tournament.prizePool || '',
       maxParticipants: tournament.maxParticipants || 100,
       matchDetails: tournament.matchDetails || '',
       rules: tournament.rules || '',
@@ -608,11 +608,10 @@ function TournamentManagement() {
                 <Form.Group className="mb-3">
                   <Form.Label>Prize Pool (Rs.)</Form.Label>
                   <Form.Control 
-                    type="number" 
+                    type="text" 
                     name="prizePool" 
                     value={formData.prizePool} 
                     onChange={handleInputChange} 
-                    min="0" 
                     required 
                   />
                 </Form.Group>
