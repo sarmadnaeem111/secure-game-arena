@@ -140,6 +140,16 @@ function HomePage() {
                           <Card.Title>Rs. {tournament.prizePool} Prize Pool</Card.Title>
                           <Card.Text>
                             {tournament.gameType} tournament with exciting prizes!
+                            {tournament.map && (
+                              <div className="mt-2">
+                                <strong>Map:</strong> {tournament.map}
+                              </div>
+                            )}
+                            {tournament.version && (
+                              <div>
+                                <strong>Version:</strong> {tournament.version}
+                              </div>
+                            )}
                           </Card.Text>
                           <Link to={`/tournaments/${tournament.id}`}>
                             <Button className="gaming-btn">View Details</Button>
