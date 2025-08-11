@@ -28,7 +28,12 @@ function Footer() {
               {/* Discord: PUBGTournaments#1234 */}
             </p>
              <p className="text-muted">
-              join on Whatsapp Chanel for announcements: https://whatsapp.com/channel/0029VbBMC8f1t90YcV2HDY2t<br />
+              join on Whatsapp group for Pubg Game announcements: https://chat.whatsapp.com/HYRM5TC5UEw9GMkIjlwHFh?mode=ac_t<br />
+              {/* Discord: PUBGTournaments#1234 */}
+            </p>
+           
+             <p className="text-muted">
+              join on Whatsapp group for Free Fire Game announcements: https://chat.whatsapp.com/InEuN9DrYHwEke6UN7Uz4S?mode=ac_t<br />
               {/* Discord: PUBGTournaments#1234 */}
             </p>
           </Col>
