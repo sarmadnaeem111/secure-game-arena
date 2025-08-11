@@ -91,6 +91,9 @@ function WithdrawalHistory() {
           </Link>
         </Card.Header>
         <Card.Body className="p-2 p-md-3">
+          <Alert variant="info" className="p-2 small mb-3">
+            Your money will be sent to your account with in 24 hours
+          </Alert>
           {error && <Alert variant="danger" className="p-2 small">{error}</Alert>}
           
           {loading ? (
