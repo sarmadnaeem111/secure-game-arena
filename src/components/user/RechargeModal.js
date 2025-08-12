@@ -20,6 +20,7 @@ function RechargeModal({ show, onHide, currentUser, onSuccess }) {
   const [paymentAccounts, setPaymentAccounts] = useState({
     bankAccountName: '',
     bankAccountNumber: '',
+    bankName: '',
     easyPasaOwnerName: '',
     easyPasaInfo: ''
   });
@@ -38,6 +39,7 @@ function RechargeModal({ show, onHide, currentUser, onSuccess }) {
           setPaymentAccounts({
             bankAccountName: data.bankAccountName || '',
             bankAccountNumber: data.bankAccountNumber || '',
+            bankName: data.bankName || '',
             easyPasaOwnerName: data.easyPasaOwnerName || '',
             easyPasaInfo: data.easyPasaInfo || ''
           });
@@ -321,6 +323,9 @@ function RechargeModal({ show, onHide, currentUser, onSuccess }) {
                   )}
                   {paymentMethod === 'Bank Transfer' && paymentAccounts.bankAccountNumber && (
                     <div>
+                      {paymentAccounts.bankName && (
+                        <div><strong>Bank Name:</strong> {paymentAccounts.bankName}</div>
+                      )}
                       <strong>Account Name:</strong> {paymentAccounts.bankAccountName}<br />
                       <strong>Account Number:</strong> {paymentAccounts.bankAccountNumber}
                     </div>
