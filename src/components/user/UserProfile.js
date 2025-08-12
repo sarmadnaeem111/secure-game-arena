@@ -191,6 +191,10 @@ function UserProfile() {
           <Form>
             <CSRFToken />
             
+            <Alert variant="danger" className="p-2 small mb-3">
+              <span style={{ color: 'red', fontWeight: 'bold' }}>payment will not be sent on jazzcash.</span>
+            </Alert>
+            
             <Form.Group className="mb-3">
               <Form.Label className="small">Available Balance</Form.Label>
               <Form.Control 
