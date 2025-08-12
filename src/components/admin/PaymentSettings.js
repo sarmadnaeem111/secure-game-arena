@@ -6,6 +6,7 @@ import { sanitizeInput } from '../../utils/security';
 import CSRFToken from '../security/CSRFToken';
 
 function PaymentSettings() {
+  const [bankName, setBankName] = useState('');
   const [bankAccountName, setBankAccountName] = useState('');
   const [bankAccountNumber, setBankAccountNumber] = useState('');
   const [easyPasaOwnerName, setEasyPasaOwnerName] = useState('');
@@ -24,6 +25,7 @@ function PaymentSettings() {
 
         if (docSnap.exists()) {
           const data = docSnap.data();
+          setBankName(data.bankName || '');
           setBankAccountName(data.bankAccountName || '');
           setBankAccountNumber(data.bankAccountNumber || '');
           setEasyPasaOwnerName(data.easyPasaOwnerName || '');
@@ -47,12 +49,13 @@ function PaymentSettings() {
       setSuccess('');
       
       // Validate inputs
-      if (!bankAccountName.trim() && !bankAccountNumber.trim() && !easyPasaOwnerName.trim() && !easyPasaInfo.trim()) {
+      if (!bankName.trim() && !bankAccountName.trim() && !bankAccountNumber.trim() && !easyPasaOwnerName.trim() && !easyPasaInfo.trim()) {
         setError('Please provide at least one payment method information');
         return;
       }
       
       // Sanitize inputs
+      const sanitizedBankName = sanitizeInput(bankName.trim());
       const sanitizedBankAccountName = sanitizeInput(bankAccountName.trim());
       const sanitizedBankAccountNumber = sanitizeInput(bankAccountNumber.trim());
       const sanitizedEasyPasaOwnerName = sanitizeInput(easyPasaOwnerName.trim());
@@ -61,6 +64,7 @@ function PaymentSettings() {
       // Save to Firestore
       const paymentSettingsRef = doc(db, 'adminSettings', 'paymentAccounts');
       await setDoc(paymentSettingsRef, {
+        bankName: sanitizedBankName,
         bankAccountName: sanitizedBankAccountName,
         bankAccountNumber: sanitizedBankAccountNumber,
         easyPasaOwnerName: sanitizedEasyPasaOwnerName,
@@ -90,6 +94,16 @@ function PaymentSettings() {
           
           <Form onSubmit={handleSubmit}>
             <CSRFToken />
+            
+            <Form.Group className="mb-3">
+              <Form.Label>Bank Name</Form.Label>
+              <Form.Control
+                type="text"
+                value={bankName}
+                onChange={(e) => setBankName(e.target.value)}
+                placeholder="Enter bank name"
+              />
+            </Form.Group>
             
             <Form.Group className="mb-3">
               <Form.Label>Bank Account Owner Name</Form.Label>
