@@ -180,7 +180,9 @@ function TournamentManagement() {
       rules: '',
       status: 'upcoming',
       resultImage: '',
-      gameLogo: '' // Initialize game logo field
+      gameLogo: '', // Initialize game logo field
+      map: '', // Initialize map field
+      version: '' // Initialize version field
     });
     setEditMode(false);
     setShowModal(true);
@@ -207,7 +209,9 @@ function TournamentManagement() {
       rules: tournament.rules || '',
       status: tournament.status || 'upcoming',
       resultImage: tournament.resultImage || '',
-      gameLogo: tournament.gameLogo || '' // Load existing game logo
+      gameLogo: tournament.gameLogo || '', // Load existing game logo
+      map: tournament.map || '', // Load existing map
+      version: tournament.version || '' // Load existing version
     });
     setCurrentTournamentId(tournament.id);
     setEditMode(true);
@@ -562,6 +566,33 @@ function TournamentManagement() {
                 <option value="Other">Other</option>
               </Form.Select>
             </Form.Group>
+            
+            <div className="row">
+              <div className="col-md-6">
+                <Form.Group className="mb-3">
+                  <Form.Label>Map</Form.Label>
+                  <Form.Control 
+                    type="text" 
+                    name="map" 
+                    value={formData.map} 
+                    onChange={handleInputChange} 
+                    placeholder="Enter game map (optional)" 
+                  />
+                </Form.Group>
+              </div>
+              <div className="col-md-6">
+                <Form.Group className="mb-3">
+                  <Form.Label>Version</Form.Label>
+                  <Form.Control 
+                    type="text" 
+                    name="version" 
+                    value={formData.version} 
+                    onChange={handleInputChange} 
+                    placeholder="Enter game version (optional)" 
+                  />
+                </Form.Group>
+              </div>
+            </div>
             
             <div className="row">
               <div className="col-md-6">
