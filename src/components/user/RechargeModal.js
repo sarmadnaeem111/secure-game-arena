@@ -271,6 +271,10 @@ function RechargeModal({ show, onHide, currentUser, onSuccess }) {
 
         <Form>
           <CSRFToken />
+          
+          <Alert variant="danger" className="p-2 small mb-3">
+            <span style={{ color: 'red', fontWeight: 'bold' }}>jazzcash payment will not be accepted.</span>
+          </Alert>
 
           <Form.Group className="mb-3">
             <Form.Label className="small">Amount (Rs.)</Form.Label>
