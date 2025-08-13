@@ -147,6 +147,12 @@ function MyTournaments() {
                       <strong>Prize Pool:</strong> Rs. {tournament.prizePool}
                       <br />
                       <strong>Participants:</strong> {tournament.participants?.length || 0} / {tournament.maxParticipants}
+                      {tournament.perKillAmount > 0 && (
+                        <>
+                          <br />
+                          <strong>Per Kill:</strong> Rs. {tournament.perKillAmount}
+                        </>
+                      )}
                       {tournament.map && (
                         <>
                           <br />
