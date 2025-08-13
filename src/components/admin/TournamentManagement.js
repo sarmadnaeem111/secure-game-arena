@@ -26,6 +26,7 @@ function TournamentManagement() {
     tournamentTime: '',
     entryFee: 0,
     prizePool: 0,
+    perKillAmount: 0,
     maxParticipants: 100,
     matchDetails: '',
     rules: '',
@@ -161,7 +162,7 @@ function TournamentManagement() {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: name === 'entryFee' || name === 'maxParticipants' 
+      [name]: name === 'entryFee' || name === 'maxParticipants' || name === 'perKillAmount'
         ? Number(value) 
         : value
     });
@@ -175,6 +176,7 @@ function TournamentManagement() {
       tournamentTime: '',
       entryFee: 0,
       prizePool: '',
+      perKillAmount: 0,
       maxParticipants: 100,
       matchDetails: '',
       rules: '',
@@ -204,6 +206,7 @@ function TournamentManagement() {
       tournamentTime,
       entryFee: tournament.entryFee || 0,
       prizePool: tournament.prizePool || '',
+      perKillAmount: tournament.perKillAmount || 0,
       maxParticipants: tournament.maxParticipants || 100,
       matchDetails: tournament.matchDetails || '',
       rules: tournament.rules || '',
@@ -658,6 +661,24 @@ function TournamentManagement() {
                     min="1" 
                     required 
                   />
+                </Form.Group>
+              </div>
+            </div>
+            
+            <div className="row">
+              <div className="col-md-4">
+                <Form.Group className="mb-3">
+                  <Form.Label>Per Kill (Rs.)</Form.Label>
+                  <Form.Control 
+                    type="number" 
+                    name="perKillAmount" 
+                    value={formData.perKillAmount} 
+                    onChange={handleInputChange} 
+                    min="0" 
+                  />
+                  <Form.Text className="text-muted">
+                    Optional: Amount awarded per kill
+                  </Form.Text>
                 </Form.Group>
               </div>
             </div>
