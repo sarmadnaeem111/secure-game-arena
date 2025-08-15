@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://widget.cloudinary.com" crossorigin />
     <link rel="preconnect" href="https://apis.google.com" crossorigin />
     <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://apis.google.com https://widget.cloudinary.com https://upload-widget.cloudinary.com https://*.cloudinary.com https://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' https://fonts.googleapis.com https://*.cloudinary.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: https://*.cloudinary.com; connect-src 'self' https://*.firebaseio.com https://*.googleapis.com https://*.cloudinary.com https://api.cloudinary.com; frame-src 'self' https://*.firebaseapp.com https://upload-widget.cloudinary.com https://*.cloudinary.com https://widget.cloudinary.com;" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://apis.google.com https://widget.cloudinary.com https://upload-widget.cloudinary.com https://*.cloudinary.com https://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' https://fonts.googleapis.com https://*.cloudinary.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: https://*.cloudinary.com; connect-src 'self' https://*.firebaseio.com https://*.googleapis.com https://*.cloudinary.com https://api.cloudinary.com; frame-src 'self' https://*.firebaseapp.com https://upload-widget.cloudinary.com https://*.cloudinary.com https://widget.cloudinary.com;" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <!-- X-Frame-Options removed as it can only be set via HTTP headers, not meta tags -->
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
@@ -39,6 +39,8 @@
     <title>PUBG Tournaments - Join Exciting Gaming Competitions</title>
     <!-- Preload Critical Resources -->
     <link rel="preload" href="%PUBLIC_URL%/static/media/hero-placeholder.svg" as="image" type="image/svg+xml" fetchpriority="high">
+    <!-- Font Awesome for Bottom Navbar Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Cloudinary Upload Widget Script - Loaded dynamically to avoid CORS issues -->
     <!-- Fallback Cloudinary Core Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cloudinary-core/2.13.0/cloudinary-core-shrinkwrap.min.js" type="text/javascript" crossorigin="anonymous" defer></script>
