@@ -173,6 +173,17 @@ footer {
   box-shadow: 0 -4px 15px rgba(0, 162, 255, 0.3);
 }
 
+/* Bottom Navbar Padding */
+@media (max-width: 991.98px) {
+  body {
+    padding-bottom: 70px;
+  }
+  
+  .App {
+    padding-bottom: 70px;
+  }
+}
+
 footer::before {
   content: '';
   position: absolute;
