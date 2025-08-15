@@ -1,6 +1,6 @@
 /* Bottom Navbar Styles */
 .bottom-navbar {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364) !important;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 8px 0;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
