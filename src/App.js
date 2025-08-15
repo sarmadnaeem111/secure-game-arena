@@ -20,6 +20,7 @@ import PrivateRoute from './components/auth/ProtectedRoute';
 
 // Common Components
 import NavigationBar from './components/common/Navbar';
+import BottomNavBar from './components/common/BottomNavBar';
 import Footer from './components/common/Footer';
 import HomePage from './components/common/HomePage';
 
@@ -209,8 +210,9 @@ function App() {
                 } 
               />
             </Routes>
-          </div>
-          <Footer />
+            </div>
+            <Footer />
+            <BottomNavBar />
         </div>
       </AuthProvider>
     </Router>
