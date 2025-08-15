@@ -132,6 +132,13 @@ function TournamentList() {
         return;
       }
 
+      // Check if username is already taken in this tournament
+      if (currentTournament.participants && currentTournament.participants.some(p => 
+          p.username && p.username.toLowerCase() === sanitizedUsername.toLowerCase())) {
+        setUsernameError('This username is already taken in this tournament. Please choose a different one.');
+        return;
+      }
+
       // Check if user has enough balance
       if (walletBalance < currentTournament.entryFee) {
         setError('Insufficient wallet balance');
@@ -395,7 +402,7 @@ function TournamentList() {
               </Form.Group>
               
               <Form.Group className="mb-3">
-                <Form.Label className="small">Game Username <span className="text-danger">*</span></Form.Label>
+                <Form.Label className="small">Game Userid <span className="text-danger">*</span></Form.Label>
                 <Form.Control 
                   type="text" 
                   placeholder="Enter your in-game username" 
