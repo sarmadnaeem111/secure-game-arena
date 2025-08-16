@@ -41,7 +41,11 @@ class TournamentStatusService {
         tournamentDate.setHours(hours, minutes, 0, 0);
         
         // Check if tournament start time has passed
-        return now >= tournamentDate;
+        // Add a small buffer (30 seconds) to prevent premature status changes due to clock differences
+        const bufferInSeconds = 30; // 30 seconds buffer
+        const adjustedNow = new Date(now.getTime() - (bufferInSeconds * 1000)); // Subtract buffer from current time
+        
+        return adjustedNow >= tournamentDate;
       });
       
       // Filter for live tournaments that should be completed (after 10 minutes)
