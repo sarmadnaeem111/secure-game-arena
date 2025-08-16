@@ -69,9 +69,9 @@ function HomePage() {
         <Container>
           <Row className="align-items-center">
             <Col xs={12} md={6} className="mb-4 mb-md-0">
-              <h1 className="gaming-title display-4">PUBG Tournaments</h1>
+              <h1 className="gaming-title display-4">Game Arena</h1>
               <p className="gaming-subtitle lead">
-                Join exciting tournaments for PUBG, 8 Ball Pool, and other multiplayer games.
+                Join exciting tournaments for PUBG, Free Fire, Ludo, 8 Ball Pool, and other multiplayer games.
                 Compete with players worldwide and win amazing prizes!
               </p>
               <div className="d-flex flex-column flex-md-row gap-2 gap-md-3 mt-4">
