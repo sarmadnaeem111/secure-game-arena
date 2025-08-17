@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Container is removed as it's not being used
 import { HelmetProvider, Helmet } from 'react-helmet-async';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -213,6 +215,7 @@ function App() {
             </div>
             <Footer />
             <BottomNavBar />
+            <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
         </div>
       </AuthProvider>
     </Router>
