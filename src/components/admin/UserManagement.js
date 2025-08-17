@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Table, Button, Modal, Form, Alert, InputGroup } from 'react-bootstrap';
-import { collection, getDocs, doc, updateDoc, getDoc, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, getDoc, addDoc, serverTimestamp, deleteDoc } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import { sanitizeInput } from '../../utils/security';
 
@@ -10,7 +10,9 @@ function UserManagement() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [currentUserId, setCurrentUserId] = useState(null);
+  const [currentUserEmail, setCurrentUserEmail] = useState('');
   const [walletAmount, setWalletAmount] = useState(0);
   const [currentBalance, setCurrentBalance] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
@@ -148,6 +150,28 @@ function UserManagement() {
     }
   }
 
+  function openDeleteModal(userId, userEmail) {
+    setCurrentUserId(userId);
+    setCurrentUserEmail(userEmail);
+    setShowDeleteModal(true);
+  }
+
+  async function handleDeleteUser() {
+    if (!currentUserId) return;
+
+    try {
+      // Delete the user document from Firestore
+      await deleteDoc(doc(db, 'users', currentUserId));
+      
+      // Refresh users list and close modal
+      fetchUsers();
+      setShowDeleteModal(false);
+      setError('');
+    } catch (error) {
+      setError('Failed to delete user: ' + error.message);
+    }
+  }
+
   return (
     <Container className="py-5">
       <h1 className="mb-4">User Management</h1>
@@ -207,8 +231,16 @@ function UserManagement() {
                       variant="success" 
                       size="sm"
                       onClick={() => openWalletModal(user.id)}
+                      className="me-2"
                     >
                       Add Rewards
+                    </Button>
+                    <Button 
+                      variant="danger" 
+                      size="sm"
+                      onClick={() => openDeleteModal(user.id, user.email)}
+                    >
+                      Delete
                     </Button>
                   </td>
                 </tr>
@@ -288,6 +320,30 @@ function UserManagement() {
             disabled={walletAmount <= 0}
           >
             Add Rewards
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Delete User Confirmation Modal */}
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete User Account</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Alert variant="danger">
+            <p>Are you sure you want to delete the user account: <strong>{currentUserEmail}</strong>?</p>
+            <p>This action cannot be undone and will permanently remove the user&apos;s account and all associated data.</p>
+          </Alert>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+            Cancel
+          </Button>
+          <Button 
+            variant="danger" 
+            onClick={handleDeleteUser}
+          >
+            Delete User
           </Button>
         </Modal.Footer>
       </Modal>
