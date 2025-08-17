@@ -402,10 +402,10 @@ function TournamentList() {
               </Form.Group>
               
               <Form.Group className="mb-3">
-                <Form.Label className="small">Game Userid <span className="text-danger">*</span></Form.Label>
+                <Form.Label className="small">Game UserName <span className="text-danger">*</span></Form.Label>
                 <Form.Control 
                   type="text" 
-                  placeholder="Enter your in-game username" 
+                  placeholder="Enter your correct in-game username" 
                   value={username}
                   onChange={(e) => {
                     setUsername(e.target.value);
