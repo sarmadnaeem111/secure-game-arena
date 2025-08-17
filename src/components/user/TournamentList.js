@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Badge, Button, Alert, Modal, Form, Nav } from 'react-bootstrap';
+import { Container, Row, Col, Card, Badge, Button, Alert, Modal, Form, Nav, Spinner } from 'react-bootstrap';
 import { collection, getDocs, doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import { useAuth } from '../../contexts/AuthContext';
@@ -14,6 +14,7 @@ function TournamentList() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [isJoining, setIsJoining] = useState(false);
   const [showJoinModal, setShowJoinModal] = useState(false);
   const [currentTournament, setCurrentTournament] = useState(null);
   const [walletBalance, setWalletBalance] = useState(0);
@@ -109,12 +110,16 @@ function TournamentList() {
   }
 
   async function handleJoinTournament() {
-    if (!currentUser || !currentTournament) return;
+    if (!currentUser || !currentTournament || isJoining) return;
 
     try {
+      // Set joining state to true to prevent multiple clicks
+      setIsJoining(true);
+      
       // Validate username
       if (!username.trim()) {
         setUsernameError('Username is required');
+        setIsJoining(false);
         return;
       }
       
@@ -124,11 +129,13 @@ function TournamentList() {
       // Validate username length and characters
       if (sanitizedUsername.length < 3 || sanitizedUsername.length > 20) {
         setUsernameError('Username must be between 3 and 20 characters');
+        setIsJoining(false);
         return;
       }
       
       if (!/^[a-zA-Z0-9_]+$/.test(sanitizedUsername)) {
         setUsernameError('Username can only contain letters, numbers, and underscores');
+        setIsJoining(false);
         return;
       }
 
@@ -136,18 +143,21 @@ function TournamentList() {
       if (currentTournament.participants && currentTournament.participants.some(p => 
           p.username && p.username.toLowerCase() === sanitizedUsername.toLowerCase())) {
         setUsernameError('This username is already taken in this tournament. Please choose a different one.');
+        setIsJoining(false);
         return;
       }
 
       // Check if user has enough balance
       if (walletBalance < currentTournament.entryFee) {
         setError('Insufficient wallet balance');
+        setIsJoining(false);
         return;
       }
 
       // Check if tournament is full
       if (currentTournament.participants?.length >= currentTournament.maxParticipants) {
         setError('Tournament is full');
+        setIsJoining(false);
         return;
       }
 
@@ -177,6 +187,9 @@ function TournamentList() {
       setShowJoinModal(false);
     } catch (error) {
       setError('Failed to join tournament: ' + error.message);
+    } finally {
+      // Reset joining state regardless of success or failure
+      setIsJoining(false);
     }
   }
 
@@ -438,11 +451,25 @@ function TournamentList() {
           <Button 
             variant="primary" 
             onClick={handleJoinTournament}
-            disabled={!currentTournament || walletBalance < currentTournament.entryFee}
+            disabled={!currentTournament || walletBalance < currentTournament.entryFee || isJoining}
             size="sm"
             className="px-3"
           >
-            Confirm & Join
+            {isJoining ? (
+              <>
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                  className="me-1"
+                />
+                Joining...
+              </>
+            ) : (
+              'Confirm & Join'
+            )}
           </Button>
         </Modal.Footer>
       </Modal>
