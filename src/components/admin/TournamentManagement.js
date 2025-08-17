@@ -5,6 +5,7 @@ import { db } from '../../firebase/config';
 import TournamentStatusService from '../../services/TournamentStatusService';
 import initCloudinary from '../../utils/cloudinaryConfig';
 import DOMPurify from 'dompurify';
+import { toast } from 'react-toastify';
 
 function TournamentManagement() {
   const [tournaments, setTournaments] = useState([]);
@@ -279,6 +280,41 @@ function TournamentManagement() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  }
+  
+  async function handleRemoveParticipant(participantIndex) {
+    if (!selectedTournament || !selectedTournament.participants) {
+      return;
+    }
+    
+    if (window.confirm('Are you sure you want to remove this participant from the tournament?')) {
+      try {
+        // Create a new array without the participant to be removed
+        const updatedParticipants = [...selectedTournament.participants];
+        updatedParticipants.splice(participantIndex, 1);
+        
+        // Update the tournament document in Firestore
+        const tournamentRef = doc(db, 'tournaments', selectedTournament.id);
+        await updateDoc(tournamentRef, {
+          participants: updatedParticipants
+        });
+        
+        // Update the local state
+        setSelectedTournament({
+          ...selectedTournament,
+          participants: updatedParticipants
+        });
+        
+        // Refresh the tournaments list
+        fetchTournaments();
+        
+        // Show success message
+        toast.success('Participant removed successfully');
+      } catch (error) {
+        console.error('Error removing participant:', error);
+        toast.error('Failed to remove participant: ' + error.message);
+      }
+    }
   }
 
   async function handleSubmit(e) {
@@ -1017,6 +1053,7 @@ function TournamentManagement() {
                   <th>Email</th>
                   <th>Game Username</th>
                   <th>Joined At</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -1034,6 +1071,15 @@ function TournamentManagement() {
                       )}
                     </td>
                     <td>{new Date(participant.joinedAt).toLocaleString()}</td>
+                    <td>
+                      <Button 
+                        variant="danger" 
+                        size="sm"
+                        onClick={() => handleRemoveParticipant(index)}
+                      >
+                        Remove
+                      </Button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
