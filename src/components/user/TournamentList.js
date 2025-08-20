@@ -132,12 +132,6 @@ function TournamentList() {
         setIsJoining(false);
         return;
       }
-      
-      if (!/^[a-zA-Z0-9_]+$/.test(sanitizedUsername)) {
-        setUsernameError('Username can only contain letters, numbers, and underscores');
-        setIsJoining(false);
-        return;
-      }
 
       // Check if username is already taken in this tournament
       if (currentTournament.participants && currentTournament.participants.some(p => 
