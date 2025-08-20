@@ -103,7 +103,7 @@ service cloud.firestore {
                      isValidString(request.resource.data.accountNumber) && 
                      isValidString(request.resource.data.bankName) && 
                      request.resource.data.amount is number && 
-                     request.resource.data.amount >= 100 && 
+                     request.resource.data.amount >= 300 && 
                      request.resource.data.status == 'pending';
       
       // Only admins can update withdrawal requests (to approve/reject)
